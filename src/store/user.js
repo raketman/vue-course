@@ -23,7 +23,6 @@ const actions = {
                 result => {
                     if (!result.data || (result.data && result.data.status == 'error')) {
                         commit('loginFailure');
-                        console.log(result.data.msg ? result.data.msg : 'Не удалось авторизоваться')
                         dispatch('alert/error', result.data.msg ? result.data.msg : 'Не удалось авторизоваться', { root: true });
                         return;
                     }
@@ -41,7 +40,6 @@ const actions = {
     fetch({commit}) {
         userService.fetch(state.userId).then(
             result => {
-                console.log(result);
                 commit('fetchSuccess', result.data);
             }
         );
@@ -50,7 +48,6 @@ const actions = {
     favorite({commit},story_id) {
         userService.favorite(state.userId, story_id).then(
             result => {
-                console.log(result);
                 commit('fetchSuccess', result.data);
             }
         );
@@ -77,6 +74,8 @@ const mutations = {
         state.status = {};
         state.userId = null;
         state.user = null;
+
+        localStorage.removeItem('userId')
     }
 };
 

@@ -5,7 +5,7 @@
       {{ source.author }}, {{ source.duration }}
       <a v-bind:href="source.url" target="_blank">Перейти</a><br>
 
-      <button class="btn" v-bind:class="{isCanAddFavorite: 'btn-danger', isExistInFavorite: 'btn-info'}" v-on:click="favorite"> {{ favoriteButtonText }}</button>
+      <button class="btn" v-bind:class="{ 'btn-info' : isCanAddFavorite, 'btn-danger': isExistInFavorite}" v-on:click="favorite"> {{ favoriteButtonText }}</button>
     </p>
   </div>
 </template>

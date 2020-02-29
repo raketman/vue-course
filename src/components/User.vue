@@ -1,8 +1,11 @@
 <template>
-  <div class="row" style="position: fixed;top: 10px;">
-    <div class="col-sm-9 offset-sm-0">
-        <img src="../../../ass"></img>
+  <div>
+    <div v-if="this.$store.getters['user/isFetch']">
+        <a v-on:click="favorite" >{{ favoriteText }}</a>
         <span>{{ getUser.name }} ,<a v-on:click="logout">Выйти</a></span>
+    </div>
+    <div  v-if="!this.$store.getters['user/isFetch']">
+      <a v-on:click="loginstart" >Войти</a>
     </div>
   </div>
 </template>
@@ -13,10 +16,19 @@
 export default {
   name: 'User',
   methods: {
-    ...mapActions('user', ['logout'])
+    ...mapActions('user', ['logout']),
+    favorite() {
+      this.$router.push('/favorites');
+    },
+    loginstart() {
+      this.$router.push('/login');
+    }
   },
   computed: {
-    ...mapGetters('user', ['isAuth', 'getUser'])
+    ...mapGetters('user', ['isAuth', 'getUser']),
+    favoriteText() {
+      return 'Избранные';
+    }
   }
 }
 </script>

@@ -1,6 +1,13 @@
 <template>
   <div id="application">
-    <user v-if="this.$store.getters['user/isFetch']"></user>
+    <div class="row">
+      <div class="col-sm-3 offset-sm-0">
+        <a v-on:click="main" ><img src="./assets/circle-time.svg"> </a>
+      </div>
+      <div class="col-sm-3 offset-sm-6">
+        <user></user>
+      </div>
+    </div>
     <div class="jumbotron">
       <div class="container">
         <div class="row">
@@ -25,6 +32,11 @@ export default {
   components: {
     Alert,
     User
+  },
+  methods: {
+    main() {
+      this.$router.push('/');
+    }
   },
   created() {
     if (this.$store.getters['user/isAuth']) {

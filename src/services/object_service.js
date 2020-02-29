@@ -1,4 +1,5 @@
 import Hobobo from './handlers/hobobo_handler'
+import Yandex from './handlers/yandex_handler'
 
 export const objectService = {
     getList
@@ -7,6 +8,7 @@ export const objectService = {
 function getList() {
     let promises = [];
     promises.push(Hobobo.getList());
+    promises.push(Yandex.getList());
 
     let resolve;
     let promise = new Promise((resolveFunc) => {
