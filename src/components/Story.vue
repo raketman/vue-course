@@ -6,7 +6,12 @@
       <span class="story__detail" v-if="source.duration">длительность - "{{ source.duration }}" </span>
     </div>
     <div class="story__favorite">
-      <button class="btn btn-small" v-bind:class="{ 'btn-info' : isCanAddFavorite, 'btn-danger': isExistInFavorite}" v-on:click="favorite"> {{ favoriteButtonText }}</button>
+      <a v-on:click="favorite" v-if="isExistInFavorite">
+          <img src="./../assets/heart.svg" />
+      </a>
+      <a v-on:click="favorite" v-if="isCanAddFavorite">
+        <img src="./../assets/heart-outline.svg" />
+      </a>
     </div>
   </div>
 </template>
@@ -33,6 +38,13 @@ export default {
       }
   },
   computed: {
+      favoriteIcon() {
+          if (this.isExistInFavorite) {
+              return './../assets/heart.svg';
+          } else {
+            return './../assets/heart-outline.svg';
+          }
+      },
       isExistInFavorite: function() {
           return this.$store.getters['user/isFetch'] && this.$store.getters['user/getUser'].favorites.indexOf(this.source.id) !== -1;
       },
