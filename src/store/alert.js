@@ -3,6 +3,19 @@ const state = {
     message: null
 };
 
+const getters = {
+    getMessage() {
+        return state.message;
+    },
+    getType() {
+        return state.type;
+    },
+
+    existAlert() {
+        return !!state.message;
+    },
+}
+
 const actions = {
     success({ commit }, message) {
         commit('success', message);
@@ -10,8 +23,8 @@ const actions = {
     error({ commit }, message) {
         commit('error', message);
     },
-    clear({ commit }, message) {
-        commit('success', message);
+    flush({ commit }, message) {
+        commit('flush', message);
     }
 };
 
@@ -24,7 +37,7 @@ const mutations = {
         state.type = 'alert-danger';
         state.message = message;
     },
-    clear(state) {
+    flush(state) {
         state.type = null;
         state.message = null;
     }
@@ -32,6 +45,7 @@ const mutations = {
 
 export const alert = {
     namespaced: true,
+    getters,
     state,
     actions,
     mutations
