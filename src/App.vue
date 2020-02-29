@@ -1,24 +1,33 @@
 <template>
   <div id="application">
-    <div class="row">
-      <div class="col-sm-3 offset-sm-0">
-        <a v-on:click="main" ><img src="./assets/circle-time.svg"> </a>
+  <md-app md-waterfall md-mode="fixed-last">
+    <md-app-toolbar class="md-large md-dense md-primary">
+      <div class="md-toolbar-row">
+        <div class="md-toolbar-section-start">
+
+          <span class="md-title">Солянка детских аудиосказок</span>
+        </div>
+
       </div>
-      <div class="col-sm-3 offset-sm-6">
-        <user></user>
-      </div>
-    </div>
-    <div class="jumbotron">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-10 offset-sm-1">
-            <alert v-if="this.$store.getters['alert/existAlert']" />
-            <router-view></router-view>
-          </div>
+
+      <div class="md-toolbar-row">
+        <md-tabs md-sync-route class="md-primary">
+          <md-tab id="tab-main" to="/" md-label="Главная" exact></md-tab>
+          <md-tab v-if="this.$store.getters['user/isAuth']" id="tab-favorites" to="/favorites" md-label="Избранные"></md-tab>
+        </md-tabs>
+        <div class="md-toolbar-section-end">
+          <user></user>
         </div>
       </div>
-    </div>
 
+
+    </md-app-toolbar>
+
+    <md-app-content>
+        <alert v-if="this.$store.getters['alert/existAlert']" />
+        <router-view></router-view>
+    </md-app-content>
+  </md-app>
   </div>
 </template>
 

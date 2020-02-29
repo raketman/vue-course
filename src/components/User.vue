@@ -1,13 +1,20 @@
 <template>
-  <div>
-    <div v-if="this.$store.getters['user/isFetch']">
+  <span>
+    <span v-if="this.$store.getters['user/isFetch']">
         <a v-on:click="favorite" >{{ favoriteText }}</a>
-        <span>{{ getUser.name }} ,<a v-on:click="logout">Выйти</a></span>
-    </div>
-    <div  v-if="!this.$store.getters['user/isFetch']">
-      <a v-on:click="loginstart" >Войти</a>
-    </div>
-  </div>
+        <span>{{ getUser.name }}
+            <a v-on:click="logout">
+                <img src="./../assets/exit-to-app.svg" />
+            </a>
+        </span>
+    </span>
+    <span  v-if="!this.$store.getters['user/isFetch']">
+        &nbsp;
+      <a v-on:click="loginstart" >
+          <img src="./../assets/account-outline.svg" />
+      </a>
+    </span>
+  </span>
 </template>
 
 <script>

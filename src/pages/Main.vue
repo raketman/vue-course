@@ -62,6 +62,7 @@
 
 <style scoped>
     .main {
+        margin-top: 30px;
         text-align: left;
     }
     .main .main__searh {
