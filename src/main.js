@@ -1,9 +1,13 @@
 import Vue from 'vue'
+import router from './router/index'
 import App from './App.vue'
 import store from './store'
-import router from './router/index'
+import { sync } from 'vuex-router-sync'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+/** Синхронизируем роутер и store **/
+sync(store,router);
 
 new Vue({
   el: '#app',
