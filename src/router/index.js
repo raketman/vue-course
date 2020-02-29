@@ -6,10 +6,11 @@ import LoginPage from '../pages/Login'
 
 Vue.use(Router);
 
-export const router = new Router({
+export default new Router({
   mode: 'history',
   routes: [
     { path: '/', component: MainPage },
+    { path: '/favorites', component: MainPage, props: { isFavorite: true } },
     { path: '/login', component: LoginPage },
     // otherwise redirect to home
     { path: '*', redirect: '/' }
