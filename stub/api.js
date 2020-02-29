@@ -3,6 +3,7 @@ const cors = require('cors')
 const api = express();
 const fs = require('fs');
 const bodyParser = require('body-parser');
+const https = require('https');
 
 api.use(cors())
 api.use(bodyParser.json());
@@ -60,6 +61,24 @@ function getUserById(id)
     return users[0];
 
 }
+
+api.get('/api/proxy.json',  (request, repsonse) => {
+    console.log(request.query);
+    https.get(request.query.url, (resp) => {
+        let data = '';
+
+        // A chunk of data has been recieved.
+        resp.on('data', (chunk) => {
+            data += chunk;
+        });
+
+        resp.on('end', () => {
+            repsonse.send(data);
+        });
+    }).on("error", (err) => {
+        console.log("Error: " + err.message);
+    });
+});
 
 api.get('/api/users.json',  (request, repsonse) => {
     console.log(request.query);
