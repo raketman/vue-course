@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <input v-model="searchText" placeholder="введите для поиска"/>
+    <div class="main">
+        <input class="main__searh" v-model="searchText" placeholder="Введите для поиска"/>
 
         <div v-for="item in getList" :key="item.id">
             <story :source="item"></story>
@@ -61,5 +61,12 @@
 </script>
 
 <style scoped>
-
+    .main {
+        text-align: left;
+    }
+    .main .main__searh {
+        width: 100%;
+        padding: 5px;
+        font-size: 2em;
+    }
 </style>

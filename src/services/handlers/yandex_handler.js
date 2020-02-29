@@ -22,7 +22,6 @@ function getList() {
     }).then( result => {
         // Приведем к общей моделе
         resolve(result.data.metatag.tracks.map(function(item) {
-            console.log(item);
 
             var minute = Math.floor(item.durationMs / 60000);
             var second = Math.floor((item.durationMs - minute * 60000) / 1000);

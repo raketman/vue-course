@@ -1,15 +1,15 @@
 <template>
-  <div class="hello">
-    <h1>{{ source.title }}</h1>
-    <p>
-      {{ source.author }}, {{ source.duration }}
-      <a v-bind:href="source.url" target="_blank">Перейти</a><br>
-
-      <button class="btn" v-bind:class="{ 'btn-info' : isCanAddFavorite, 'btn-danger': isExistInFavorite}" v-on:click="favorite"> {{ favoriteButtonText }}</button>
-    </p>
+  <div class="story">
+    <h3 class="story__title" v-on:click="goToLink">{{ source.title }}</h3>
+    <div>
+      <span class="story__detail" v-if="source.author">автор - "{{ source.author }}" </span>
+      <span class="story__detail" v-if="source.duration">длительность - "{{ source.duration }}" </span>
+    </div>
+    <div class="story__favorite">
+      <button class="btn btn-small" v-bind:class="{ 'btn-info' : isCanAddFavorite, 'btn-danger': isExistInFavorite}" v-on:click="favorite"> {{ favoriteButtonText }}</button>
+    </div>
   </div>
 </template>
-
 <script>
 export default {
   name: 'Story',
@@ -20,6 +20,9 @@ export default {
       },
   },
   methods: {
+      goToLink() {
+          window.open(this.source.url);
+      },
       favorite: function() {
           if (!this.$store.getters['user/isAuth']) {
               this.$router.push('/login');
@@ -58,5 +61,27 @@ li {
 }
 a {
   color: #42b983;
+}
+.story {
+    text-align: left;
+    border-bottom: lightgray 1px solid;
+    padding-bottom: 10px;
+    position: relative;
+}
+  .story .story__title {
+      cursor: pointer;
+      margin-right: 200px;
+  }
+  .story .story__detail {
+      font-size: 0.8em;
+      color: darkslategray;
+  }
+
+.story .story__favorite {
+    text-align: right;
+    right: 0px;
+    top:0px;
+    width: 200px;
+    position: absolute;
 }
 </style>
