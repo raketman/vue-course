@@ -49,7 +49,7 @@ export default {
           return this.$store.getters['user/isFetch'] && this.$store.getters['user/getUser'].favorites.indexOf(this.source.id) !== -1;
       },
       isCanAddFavorite: function(){
-          return !this.isExistInFavorite && this.$store.getters['user/isAuth'];
+          return !this.isExistInFavorite || !this.$store.getters['user/isAuth'];
       },
       favoriteButtonText: function() {
           return this.isExistInFavorite ? 'убрать из избранного' : 'добавить избранное';
