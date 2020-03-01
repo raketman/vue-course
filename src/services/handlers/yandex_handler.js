@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import config from 'config'
 
 export default {
     getList
@@ -15,7 +15,7 @@ function getList() {
 
     axios({
         method: 'get',
-        url: 'http://localhost:3000/api/proxy.json',
+        url: config.apiUrl + '/api/proxy.json',
         params: {
             url: 'https://music.yandex.ru/handlers/metatag.jsx?id=%D0%B0%D1%83%D0%B4%D0%B8%D0%BE%D1%81%D0%BA%D0%B0%D0%B7%D0%BA%D0%B8&lang=ru'
         }
